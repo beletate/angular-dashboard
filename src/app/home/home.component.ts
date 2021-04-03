@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
 
   iniciarTabela() {
     this.tabela = JSON.parse(localStorage.getItem("carteira"))
-    console.log(this.tabela)
   }
 
   salvarValor(carteiraForm) {
@@ -34,7 +33,7 @@ export class HomeComponent implements OnInit {
 
     carteira.push({
       id: carteira.length + 1,
-      valor: carteiraForm.value.valor,
+      valor: parseInt(carteiraForm.value.valor),
       caixa: carteiraForm.value.caixa,
       descricao: carteiraForm.value.descricao,
       data_valor: carteiraForm.value.data_valor
@@ -43,6 +42,7 @@ export class HomeComponent implements OnInit {
     localStorage.setItem("carteira", JSON.stringify(carteira))
 
     carteiraForm.resetForm()
+    this.iniciarTabela()
   }
 
 

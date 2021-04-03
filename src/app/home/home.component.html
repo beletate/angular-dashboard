@@ -8,11 +8,11 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">R$</span>
                     </div>
-                    <input type="text"  name="valor" class="form-control" type="number"
-                    [(ngModel)]="carteira.valor" #valor="ngModel">
+                    <input type="text" name="valor" class="form-control" type="number" [(ngModel)]="carteira.valor"
+                        #valor="ngModel" required>
 
-                    <select class="form-control" id="moneyOption" name="caixa"
-                    [(ngModel)]="carteira.caixa" #caixa="ngModel">
+                    <select class="form-control" id="moneyOption" name="caixa" [(ngModel)]="carteira.caixa"
+                        #caixa="ngModel" required>
                         <option disabled selected value> Fluxo de Caixa </option>
                         <option>Entrada</option>
                         <option>Saída</option>
@@ -21,17 +21,19 @@
                 <div class="form-group">
                     <label for="descricao">Descrição do Valor <em>*</em></label>
                     <input type="email" name="descricao" class="form-control" id="descricao" placeholder="Ifood"
-                    [(ngModel)]="carteira.descricao" #descricao="ngModel">
+                        [(ngModel)]="carteira.descricao" #descricao="ngModel" required>
                 </div>
                 <div class="form-group">
                     <label for="data_valor">Data <em>*</em></label>
-                      <input class="form-control" name="data_valor" type="date" value="2021-01-01" id="data_valor"
-                      [(ngModel)]="carteira.data_valor" #data_valor="ngModel">
-                  </div>
+                    <input class="form-control" name="data_valor" type="date" value="2021-01-01" id="data_valor"
+                        [(ngModel)]="carteira.data_valor" #data_valor="ngModel" required>
+                </div>
 
                 <div class="d-flex justify-content-end">
                     <p class="lead">
-                        <input class="btn btn-success btn-sm" type="submit" value="Salvar"/>                    </p>
+                        <input class="btn btn-success btn-sm" type="submit" value="Salvar"
+                            [disabled]="carteiraForm.invalid">
+                    </p>
                 </div>
             </div>
             <div class="col-5">
