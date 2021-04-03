@@ -21,6 +21,7 @@
     "@angular/router": "~11.2.6",
     "apexcharts": "^3.26.0",
     "bootstrap": "^4.6.0",
+    "bootstrap-icons": "^1.4.1",
     "ng-apexcharts": "^1.5.9",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
