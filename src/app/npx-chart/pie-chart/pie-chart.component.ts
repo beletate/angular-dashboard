@@ -32,7 +32,7 @@ export class PieChartComponent implements OnInit{
 
     setInterval(() => {
       this.populateChart()
-    }, 10000)
+    }, 15000)
   }
 
   populateChart(){
@@ -50,21 +50,19 @@ export class PieChartComponent implements OnInit{
       }
     }
 
-    console.log(entradas, saidas)
-
     this.chartOptions = {
       series: [entradas, saidas],
       chart: {
-        width: 380,
+        width: 520,
         type: "pie"
       },
       labels: ["Entrada", "Saída"],
       responsive: [
         {
-          breakpoint: 480,
+          breakpoint: 640,
           options: {
             chart: {
-              width: 200
+              width: 430
             },
             legend: {
               position: "bottom"

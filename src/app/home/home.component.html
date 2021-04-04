@@ -1,9 +1,13 @@
 <div style="background:transparent !important" class="jumbotron">
     <form #carteiraForm="ngForm" (ngSubmit)="salvarValor(carteiraForm)">
-        <h1 class="display-4">Carteira Virtual</h1>
-        <p class="lead">Um simples auxiliar pra manter a grana no bolso! 💲</p>
-        <div class="row">
-            <div class="col-3">
+        <div class="row justify-content-center">
+            <div class="col-sm-8">
+                <h1 class="display-4">Carteira Virtual</h1>
+                <p class="lead">Um simples auxiliar pra manter a grana no bolso! 💲</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">R$</span>
@@ -36,7 +40,7 @@
                     </p>
                 </div>
             </div>
-            <div class="col-5">
+            <div class="col-lg-5">
                 <table class="table text-center">
                     <thead>
                         <tr>
@@ -58,14 +62,15 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-4">
-                <app-pie-chart></app-pie-chart>
-            </div>
         </div>
     </form>
-    <div class="row d-flex justify-content-center">
-        <div class="col-6">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
             <app-bars-chart></app-bars-chart>
+        </div>
+        
+        <div class="col-lg-2 mr-3">
+            <app-pie-chart></app-pie-chart>
         </div>
     </div>
 </div>
