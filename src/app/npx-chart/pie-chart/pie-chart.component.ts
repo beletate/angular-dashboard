@@ -25,6 +25,27 @@ export class PieChartComponent implements OnInit{
   public chartOptions: Partial<ChartOptions>;
 
   constructor() {
+    this.chartOptions = {
+      series: [0, 0],
+      chart: {
+        width: 520,
+        type: "pie"
+      },
+      labels: ["Entrada", "Saída"],
+      responsive: [
+        {
+          breakpoint: 640,
+          options: {
+            chart: {
+              width: 430
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ]
+    };
   }
 
   ngOnInit(){
@@ -50,26 +71,6 @@ export class PieChartComponent implements OnInit{
       }
     }
 
-    this.chartOptions = {
-      series: [entradas, saidas],
-      chart: {
-        width: 520,
-        type: "pie"
-      },
-      labels: ["Entrada", "Saída"],
-      responsive: [
-        {
-          breakpoint: 640,
-          options: {
-            chart: {
-              width: 430
-            },
-            legend: {
-              position: "bottom"
-            }
-          }
-        }
-      ]
-    };
+    this.chartOptions.series = [entradas, saidas]
   }
 }
