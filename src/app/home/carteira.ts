@@ -4,6 +4,7 @@ export class Carteira{
     caixa: string
     descricao: string
     data_valor: string
+    
     constructor(id?: number, valor?: number, caixa?:string, descricao?: string, data_valor?: string){
         this.id = id
         this.valor = valor

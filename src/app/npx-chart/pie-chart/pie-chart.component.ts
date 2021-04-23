@@ -53,7 +53,7 @@ export class PieChartComponent implements OnInit{
 
     setInterval(() => {
       this.populateChart()
-    }, 15000)
+    }, 5000)
   }
 
   populateChart(){

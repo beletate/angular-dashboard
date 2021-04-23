@@ -14,20 +14,13 @@ export class HomeComponent implements OnInit {
   tabela: [] = []
 
   ngOnInit(): void {
-    this.iniciarTabela()
+    this.getLocalStorage()
 
     setInterval(() => {
-      this.iniciarTabela()
+      this.getLocalStorage()
     }, 5000)
 
-    //Pego tudo que esta no localStorage ao iniciar a aplicação
-    this.getLocalStorage()
   }
-
-  iniciarTabela() {
-    this.tabela = JSON.parse(localStorage.getItem("carteira"))
-  }
-
 
 
   salvarValor() {
@@ -58,7 +51,7 @@ export class HomeComponent implements OnInit {
     
       this.limparTela()
     //carteiraForm.resetForm()
-    this.iniciarTabela()
+    this.getLocalStorage()
   }
 
   //Editar
@@ -85,46 +78,24 @@ export class HomeComponent implements OnInit {
     }
 
   }
-  deletaRegistro(carteira){
+  deletaRegistro(carteira: Carteira){
 
-    let indiceParadeletar = -1;
-    let naoEncontrado = -1
-    let cont = 0
-    
-    //refatora depois usando o indexOf
-    for(let indice in this.carteiras){
-      if(this.carteiras[indice].id == carteira.id){
-        indiceParadeletar = cont;
-      }
-      cont++
-    }
-
-    console.log("indicce a ser deletado",indiceParadeletar)
-    if(indiceParadeletar != naoEncontrado){
-
-      this.carteiras.splice(indiceParadeletar,1)
-    
-      this.salvaLocalStorage()
-  
-    }
-    
+    let index = this.carteiras.findIndex(c => c.id === carteira.id)
+    this.carteiras.splice(index, 1)
+    this.salvaLocalStorage()        
   }
 
   getLocalStorage(){
-
     if (localStorage.hasOwnProperty("carteira")) {
       this.carteiras = JSON.parse(localStorage.getItem("carteira"))  
+      this.tabela = JSON.parse(localStorage.getItem("carteira"))
     }
   }
 
   salvaLocalStorage(){
-    if (localStorage.hasOwnProperty("carteira")) {
-
-      localStorage.setItem("carteira", JSON.stringify(this.carteiras))
-      this.getLocalStorage()
-    } else {
-      console.log("localStorage carteira nao existe")
-    }
+    localStorage.setItem("carteira", JSON.stringify(this.carteiras))
+    this.getLocalStorage()
+    
   }
 
   limparTela(){

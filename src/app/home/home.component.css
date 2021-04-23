@@ -4,3 +4,7 @@ em{
     color: red;
     font-weight: bolder;
 }
+
+i{
+    cursor: pointer;
+}
