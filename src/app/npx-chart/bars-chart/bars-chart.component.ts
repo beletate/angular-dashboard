@@ -75,7 +75,6 @@ export class BarsChartComponent implements OnInit{
   }
   ngOnInit() {
     let valores = JSON.parse(localStorage.getItem("carteira"))
-    console.log(valores)
   }
 
 }

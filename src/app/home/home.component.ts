@@ -68,7 +68,23 @@ export class HomeComponent implements OnInit {
 
   getLocalStorage() {
     if (localStorage.hasOwnProperty("carteira")) {
-      this.carteiras = JSON.parse(localStorage.getItem("carteira"))
+
+      let objectArray: Carteira[] = JSON.parse(localStorage.getItem("carteira"))
+
+      let sortedArray: Carteira[] = objectArray.sort((n1, n2) => {
+        if (n1.data_valor > n2.data_valor) {
+          return -1;
+        }
+
+        if (n1.data_valor < n2.data_valor) {
+          return 1;
+        }
+
+        return 0;
+      });
+
+      this.carteiras = sortedArray
+      
     }
   }
 

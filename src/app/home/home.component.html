@@ -40,23 +40,23 @@
                     </p>
                 </div>
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-5 table-wrapper-scroll-y my-custom-scrollbar">
                 <table class="table text-center">
                     <thead>
                         <tr>
-                            <th scope="col">Valor</th>
                             <th scope="col">Tipo</th>
                             <th scope="col">Descrição</th>
                             <th scope="col">Data</th>
+                            <th scope="col">Valor</th>
                             <th scope="col">Opções</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let index of carteiras">
-                            <td>{{index.valor}}</td>
                             <td>{{index.caixa}}</td>
                             <td>{{index.descricao}}</td>
                             <td>{{index.data_valor | date: 'dd/MM/yyyy'}}</td>
+                            <td>R${{index.valor}}</td>
                             <td><i class="bi bi-pen" (click)="editarRegistro(index.id)"> </i> | <i
                                     class="bi bi-x-circle" (click)="deletaRegistro(index)"></i></td>
                         </tr>
