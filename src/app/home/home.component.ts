@@ -11,7 +11,6 @@ export class HomeComponent implements OnInit {
   carteiras = []
   carteira: Carteira = new Carteira
   valores: Carteira[] = []
-  tabela: [] = []
 
   ngOnInit(): void {
     this.getLocalStorage()
@@ -28,7 +27,7 @@ export class HomeComponent implements OnInit {
       
     // verificando se o id ja é existente 
     if(this.carteira.id == null || this.carteira.id == undefined){
-      this.carteira.id = this.carteiras.length + 1
+      this.carteira.id = new Date().getTime()
       this.carteiras.push(this.carteira)
 
     }else {
@@ -88,7 +87,6 @@ export class HomeComponent implements OnInit {
   getLocalStorage(){
     if (localStorage.hasOwnProperty("carteira")) {
       this.carteiras = JSON.parse(localStorage.getItem("carteira"))  
-      this.tabela = JSON.parse(localStorage.getItem("carteira"))
     }
   }
 

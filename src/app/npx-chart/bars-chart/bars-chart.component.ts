@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import {
   ChartComponent,
@@ -25,7 +25,7 @@ export type ChartOptions = {
   styleUrls: ['./bars-chart.component.css']
 })
 
-export class BarsChartComponent {
+export class BarsChartComponent implements OnInit{
 
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
@@ -73,4 +73,9 @@ export class BarsChartComponent {
       }
     };
   }
+  ngOnInit() {
+    let valores = JSON.parse(localStorage.getItem("carteira"))
+    console.log(valores)
+  }
+
 }

@@ -1,13 +1,13 @@
 <div style="background:transparent !important" class="jumbotron">
     <form #carteiraForm="ngForm" (ngSubmit)="salvarValor()">
         <div class="row justify-content-center">
-            <div class="col-sm-8">
+            <div class="col-sm-9">
                 <h1 class="display-4">Carteira Virtual</h1>
                 <p class="lead">Um simples auxiliar pra manter a grana no bolso! 💲</p>
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-lg-3">
+            <div class="col-lg-4">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">R$</span>
@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <label for="data_valor">Data <em>*</em></label>
                     <input class="form-control" name="data_valor" type="date" value="2021-01-01" id="data_valor"
-                        [(ngModel)]="carteira.data_valor" #data_valor="ngModel" required>
+                        [(ngModel)]="carteira.data_valor" #data_valor="ngModel" required >
                 </div>
 
                 <div class="d-flex justify-content-end">
@@ -52,7 +52,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let index of tabela">
+                        <tr *ngFor="let index of carteiras">
                             <td>{{index.valor}}</td>
                             <td>{{index.caixa}}</td>
                             <td>{{index.descricao}}</td>
@@ -69,6 +69,7 @@
         <div class="col-lg-5">
             <app-bars-chart></app-bars-chart>
         </div>
+        <div class='col-lg-2'></div>
 
         <div class="col-lg-2 mr-3">
             <app-pie-chart></app-pie-chart>
