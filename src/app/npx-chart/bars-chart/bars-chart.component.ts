@@ -35,12 +35,12 @@ export class BarsChartComponent implements OnInit{
       series: [
         {
           name: "Entrada",
-          data: [1400, 2110, 1000]
+          data: [1400, 2110, 1000, 400, 8700, 6222, 1400, 2110, 1000, 400, 8700, 6222]
         },
         {
           name: "Saída",
 
-          data: [750, 1520, 1100]
+          data: [750, 1520, 1100, 3000, 200, 5440, 750, 1520, 1100, 3000, 200, 5440]
         }
       ],
       chart: {
@@ -56,7 +56,7 @@ export class BarsChartComponent implements OnInit{
         }
       },
       dataLabels: {
-        enabled: true,
+        enabled: false,
         offsetX: -6,
         style: {
           fontSize: "12px",
@@ -69,7 +69,7 @@ export class BarsChartComponent implements OnInit{
         colors: ["#fff"]
       },
       xaxis: {
-        categories: ['Janeiro', 'Feveiro', 'Março']
+        categories: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
       }
     };
   }
