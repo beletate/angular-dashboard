@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <label for="data_valor">Data <em>*</em></label>
                     <input class="form-control" name="data_valor" type="date" value="2021-01-01" id="data_valor"
-                        [(ngModel)]="carteira.data_valor" #data_valor="ngModel" required >
+                        [(ngModel)]="carteira.data_valor" #data_valor="ngModel" required onkeydown="return false">
                 </div>
 
                 <div class="d-flex justify-content-end">

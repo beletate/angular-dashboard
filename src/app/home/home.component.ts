@@ -7,7 +7,7 @@ import { Carteira } from './carteira';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  
+
   carteiras = []
   carteira: Carteira = new Carteira
   valores: Carteira[] = []
@@ -21,22 +21,13 @@ export class HomeComponent implements OnInit {
 
   }
 
-
   salvarValor() {
-
-      
-    // verificando se o id ja é existente 
-    if(this.carteira.id == null || this.carteira.id == undefined){
+    if (this.carteira.id == null || this.carteira.id == undefined) {
       this.carteira.id = new Date().getTime()
       this.carteiras.push(this.carteira)
-
-    }else {
-
-       //Procurando id para alteração e atualizado/aletrando as informações no Array.
-     for( let indiceCarteira in this.carteiras ){
-      
-        if( this.carteiras[indiceCarteira].id == this.carteira.id ){
-          
+    } else {
+      for (let indiceCarteira in this.carteiras) {
+        if (this.carteiras[indiceCarteira].id == this.carteira.id) {
           this.carteiras[indiceCarteira].descricao = this.carteira.descricao
           this.carteiras[indiceCarteira].valor = this.carteira.valor
           this.carteiras[indiceCarteira].caixa = this.carteira.caixa
@@ -45,58 +36,49 @@ export class HomeComponent implements OnInit {
       }
 
     }
+    this.salvaLocalStorage()
 
-      this.salvaLocalStorage()
-    
-      this.limparTela()
-    //carteiraForm.resetForm()
+    this.limparTela()
+
     this.getLocalStorage()
   }
 
-  //Editar
-  editarRegistro(idRegistro){
-        
-    //Pega Todo o conteudo do localStorage e colocando no array carteira.
+  editarRegistro(idRegistro) {
     if (localStorage.hasOwnProperty("carteira")) {
       this.carteiras = JSON.parse(localStorage.getItem("carteira"))
     }
-    
-    //Procurando id para alteração e atualizado/aletrando as informações no Array.
-    for( let carteira in this.carteiras ){
-      
-      if( this.carteiras[carteira].id == idRegistro ){
-        
-        this.carteira.id = this.carteiras[carteira].id
-        this.carteira.descricao =  this.carteiras[carteira].descricao
-        this.carteira.valor =  this.carteiras[carteira].valor
-        this.carteira.caixa =  this.carteiras[carteira].caixa
-        this.carteira.data_valor =  this.carteiras[carteira].data_valor
 
-       
+    for (let carteira in this.carteiras) {
+      if (this.carteiras[carteira].id == idRegistro) {
+        this.carteira.id = this.carteiras[carteira].id
+        this.carteira.descricao = this.carteiras[carteira].descricao
+        this.carteira.valor = this.carteiras[carteira].valor
+        this.carteira.caixa = this.carteiras[carteira].caixa
+        this.carteira.data_valor = this.carteiras[carteira].data_valor
       }
     }
 
   }
-  deletaRegistro(carteira: Carteira){
 
+  deletaRegistro(carteira: Carteira) {
     let index = this.carteiras.findIndex(c => c.id === carteira.id)
     this.carteiras.splice(index, 1)
-    this.salvaLocalStorage()        
+    this.salvaLocalStorage()
   }
 
-  getLocalStorage(){
+  getLocalStorage() {
     if (localStorage.hasOwnProperty("carteira")) {
-      this.carteiras = JSON.parse(localStorage.getItem("carteira"))  
+      this.carteiras = JSON.parse(localStorage.getItem("carteira"))
     }
   }
 
-  salvaLocalStorage(){
+  salvaLocalStorage() {
     localStorage.setItem("carteira", JSON.stringify(this.carteiras))
     this.getLocalStorage()
-    
+
   }
 
-  limparTela(){
-    this.carteira = new Carteira 
+  limparTela() {
+    this.carteira = new Carteira
   }
 }
