@@ -75,7 +75,6 @@ export class HomeComponent implements OnInit {
         if (n1.data_valor > n2.data_valor) {
           return -1;
         }
-
         if (n1.data_valor < n2.data_valor) {
           return 1;
         }
@@ -84,7 +83,6 @@ export class HomeComponent implements OnInit {
       });
 
       this.carteiras = sortedArray
-      
     }
   }
 

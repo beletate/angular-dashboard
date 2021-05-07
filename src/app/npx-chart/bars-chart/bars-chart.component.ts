@@ -9,6 +9,7 @@ import {
   ApexPlotOptions,
   ApexStroke
 } from "ng-apexcharts";
+import { Carteira } from 'src/app/home/carteira';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -25,22 +26,24 @@ export type ChartOptions = {
   styleUrls: ['./bars-chart.component.css']
 })
 
-export class BarsChartComponent implements OnInit{
+export class BarsChartComponent implements OnInit {
 
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
+
+  entradas: number = 0
+  saidas: number = 0
 
   constructor() {
     this.chartOptions = {
       series: [
         {
           name: "Entrada",
-          data: [1400, 2110, 1000, 400, 8700, 6222, 1400, 2110, 1000, 400, 8700, 6222]
+          data: [0]
         },
         {
           name: "Saída",
-
-          data: [750, 1520, 1100, 3000, 200, 5440, 750, 1520, 1100, 3000, 200, 5440]
+          data: [0]
         }
       ],
       chart: {
@@ -69,12 +72,37 @@ export class BarsChartComponent implements OnInit{
         colors: ["#fff"]
       },
       xaxis: {
-        categories: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+        categories: ['Entrada', 'Saída']
       }
     };
   }
   ngOnInit() {
     let valores = JSON.parse(localStorage.getItem("carteira"))
+
+    setInterval(() => this.getValuesOfArray, 5000)
+
+    this.getValuesOfArray(valores)
   }
 
+  getValuesOfArray(valores) {
+    valores.map(res => {
+      if (res.caixa === 'Saída') {
+        this.saidas += res.valor
+      } else {
+        this.entradas = this.entradas + res.valor
+      }
+    })
+    this.populateGraph()
+  }
+
+  populateGraph(){
+    this.chartOptions.series = [{
+      name: "Entrada",
+      data: [this.entradas]
+    },
+    {
+      name: "Saída",
+      data: [this.saidas]
+    }]
+  }
 }
