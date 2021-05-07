@@ -79,12 +79,15 @@ export class BarsChartComponent implements OnInit {
   ngOnInit() {
     let valores = JSON.parse(localStorage.getItem("carteira"))
 
-    setInterval(() => this.getValuesOfArray, 5000)
+    setInterval(() => this.getValuesOfArray(valores), 5000)
 
     this.getValuesOfArray(valores)
   }
 
   getValuesOfArray(valores) {
+
+    this.entradas = 0
+    this.saidas = 0
     valores.map(res => {
       if (res.caixa === 'Saída') {
         this.saidas += res.valor
