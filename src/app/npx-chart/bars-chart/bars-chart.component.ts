@@ -33,6 +33,7 @@ export class BarsChartComponent implements OnInit {
 
   entradas: number = 0
   saidas: number = 0
+  valores: Carteira[] = [];
 
   constructor() {
     this.chartOptions = {
@@ -77,35 +78,39 @@ export class BarsChartComponent implements OnInit {
     };
   }
   ngOnInit() {
-    let valores = JSON.parse(localStorage.getItem("carteira"))
-
-    setInterval(() => this.getValuesOfArray(valores), 5000)
-
-    this.getValuesOfArray(valores)
-  }
-
-  getValuesOfArray(valores) {
-
-    this.entradas = 0
-    this.saidas = 0
-    valores.map(res => {
-      if (res.caixa === 'Saída') {
-        this.saidas += res.valor
-      } else {
-        this.entradas = this.entradas + res.valor
-      }
-    })
     this.populateGraph()
+    
+    setInterval(() => this.populateGraph(), 5000)
+    
   }
-
+  
   populateGraph(){
-    this.chartOptions.series = [{
-      name: "Entrada",
-      data: [this.entradas]
-    },
-    {
-      name: "Saída",
-      data: [this.saidas]
-    }]
+    
+    this.valores = JSON.parse(localStorage.getItem("carteira"))
+
+
+    if(this.valores != null){
+
+      this.entradas = 0
+      this.saidas = 0
+  
+      this.valores.map(res => {
+        if (res.caixa === 'Saída') {
+          this.saidas += res.valor
+        } else {
+          this.entradas = this.entradas + res.valor
+        }
+      })
+  
+      this.chartOptions.series = [{
+        name: "Entrada",
+        data: [this.entradas]
+      },
+      {
+        name: "Saída",
+        data: [this.saidas]
+      }]
+    }
+
   }
 }

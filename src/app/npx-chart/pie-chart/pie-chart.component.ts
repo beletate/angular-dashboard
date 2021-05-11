@@ -6,6 +6,7 @@ import {
   ApexChart,
   ChartComponent
 } from "ng-apexcharts";
+import { Carteira } from 'src/app/home/carteira';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -23,6 +24,10 @@ export class PieChartComponent implements OnInit{
 
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
+
+  entradas: number = 0
+  saidas: number = 0
+  valores: Carteira[] = [];
 
   constructor() {
     this.chartOptions = {
@@ -58,19 +63,23 @@ export class PieChartComponent implements OnInit{
 
   populateChart(){
     
-    let valores = JSON.parse(localStorage.getItem("carteira"))
+    this.valores = JSON.parse(localStorage.getItem("carteira"))
 
-    let entradas:number = 0
-    let saidas:number = 0
+    console.log(this.valores)
 
-    for(let i in valores){
-      if(valores[i].caixa === 'Entrada'){
-        entradas = entradas + valores[i].valor
-      }else{
-        saidas = saidas + valores[i].valor
+    if(this.valores != null){
+      this.entradas = 0
+      this.saidas = 0
+      for(let i in this.valores){
+        if(this.valores[i].caixa === 'Entrada'){
+          this.entradas = this.entradas + this.valores[i].valor
+        }else{
+          this.saidas = this.saidas + this.valores[i].valor
+        }
       }
+  
+      this.chartOptions.series = [this.entradas, this.saidas]
     }
-
-    this.chartOptions.series = [entradas, saidas]
+    
   }
 }
